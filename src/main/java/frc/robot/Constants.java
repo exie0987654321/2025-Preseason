@@ -36,4 +36,15 @@ public final class Constants {
     public static final int FRONT_RIGHT_STEER_CAN_ID = 32;
     public static final int REAR_RIGHT_STEER_CAN_ID = 39;
   }
+
+  public static class MotorConstants {
+    public static final int NEO550_CURRENT_LIMIT = 20;
+    public static final int NEO_CURRENT_LIMIT = 50;
+    public static final double MINUTE_TO_SECOND_CONVERSION = 1 / 60.0;
+    public static final double NEO_FREE_SPEED_RPM = 5676;
+  }
+
+  public static class SubsystemSpeeds {
+    public static final double INTAKE_SPEED = 1;
+  }
 }
