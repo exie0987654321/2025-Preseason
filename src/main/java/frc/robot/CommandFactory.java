@@ -11,4 +11,8 @@ public class CommandFactory {
         this.intake = intake;
         this.indexer = indexer;
     }
+
+    public Command unningTwoAtTheSameTime() {
+        return Commands.parallel(intake.setSpeed(SubsystemSpeeds.INDEXER_SPEED), indexer.setSpeed(SubsystemSpeeds.INDEXER_SPEED);
+    }
 }

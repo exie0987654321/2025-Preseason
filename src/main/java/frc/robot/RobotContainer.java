@@ -17,20 +17,32 @@ public class RobotContainer {
 
   private final Intake intake = new Intake();
 
+  private final Indexer indexer = new Indenxer();
+
+  private final CommandFactory commandFactory = new CommandFactory();
+
   public RobotContainer() {
     configureDriverBindings();
     configureOperatorBindings();
     configureDefaultCommands();
   }
 
+  }
+
   private void configureDefaultCommands() {
     intake.setDefaultCommand(intake.setSpeed(0));
+    indexer.setDefaultCommand(indexer.setSpeed(0));
+
+
   }
 
   private void configureOperatorBindings() {
     operatorController.rightBumper().whileTrue(intake.setSpeed(SubsystemSpeeds.INTAKE_SPEED));
-  }
+  
+    operatorController.leftBumper().whileTrue(indexer.setSpeed(-SubsystemSpeeds.INDEXER_SPEED));
 
+    operatorController.rightTrigger().whileTrue(commandFactory.runningTwoAtTheSameTime())
+  }
   private void configureDriverBindings() {
 
   }
