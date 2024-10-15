@@ -8,6 +8,7 @@ import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.SubsystemSpeeds;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
 public class RobotContainer {
@@ -18,8 +19,9 @@ public class RobotContainer {
 
   private final Intake intake = new Intake();
   private final Indexer indexer = new Indexer();
+  private final Shooter shooter = new Shooter();
 
-  private final CommandFactory commandFactory = new CommandFactory(intake, indexer);
+  private final CommandFactory commandFactory = new CommandFactory(intake, indexer, shooter);
 
   public RobotContainer() {
     configureDriverBindings();
@@ -30,12 +32,16 @@ public class RobotContainer {
   private void configureDefaultCommands() {
     intake.setDefaultCommand(intake.setSpeed(0));
     indexer.setDefaultCommand(indexer.setSpeed(0));
+    shooter.setDefaultCommand(shooter.setShooterSpeed(0));
   }
 
   private void configureOperatorBindings() {
     operatorController.rightBumper().whileTrue(intake.setSpeed(SubsystemSpeeds.INTAKE_SPEED));
     operatorController.leftBumper().whileTrue(indexer.setSpeed(-SubsystemSpeeds.INTAKE_SPEED));
     operatorController.rightTrigger().whileTrue(commandFactory.runIntakeAndIndexer());
+
+    driverController.rightBumper().whileTrue(commandFactory.shootWhenUpToSpeed(SubsystemSpeeds.SHOOTER_SPEED));
+    driverController.leftBumper().whileTrue(shooter.setShooterSpeed(SubsystemSpeeds.SHOOTER_SPEED));
   }
 
   private void configureDriverBindings() {
