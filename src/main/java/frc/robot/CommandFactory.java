@@ -29,7 +29,7 @@ public class CommandFactory {
                         shooter.isShooterAtSpeed(speed)));
     }
 
-    public Command unningTwoAtTheSameTime() {
-        return Commands.parallel(intake.setSpeed(SubsystemSpeeds.INDEXER_SPEED), indexer.setSpeed(SubsystemSpeeds.INDEXER_SPEED);
+    public Command runningIntakeAndIndexerAtTheSameTime() {
+        return Commands.parallel(intake.setSpeed(SubsystemSpeeds.INDEXER_FEED_SPEED), indexer.setSpeed(SubsystemSpeeds.INDEXER_FEED_SPEED));
     }
 }

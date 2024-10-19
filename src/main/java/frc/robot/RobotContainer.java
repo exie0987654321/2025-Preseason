@@ -23,44 +23,32 @@ public class RobotContainer {
 
   private final CommandFactory commandFactory = new CommandFactory(intake, indexer, shooter);
 
-  private final Indexer indexer = new Indenxer();
-
-  private final CommandFactory commandFactory = new CommandFactory();
-
   public RobotContainer() {
     configureDriverBindings();
     configureOperatorBindings();
     configureDefaultCommands();
   }
 
-  }
+  
 
   private void configureDefaultCommands() {
     intake.setDefaultCommand(intake.setSpeed(0));
     indexer.setDefaultCommand(indexer.setSpeed(0));
-<<<<<<< HEAD
-
-
-=======
     shooter.setDefaultCommand(shooter.setShooterSpeed(0));
->>>>>>> main
   }
 
   private void configureOperatorBindings() {
     operatorController.rightBumper().whileTrue(intake.setSpeed(SubsystemSpeeds.INTAKE_SPEED));
-<<<<<<< HEAD
   
-    operatorController.leftBumper().whileTrue(indexer.setSpeed(-SubsystemSpeeds.INDEXER_SPEED));
-=======
+    operatorController.leftBumper().whileTrue(indexer.setSpeed(-SubsystemSpeeds.INDEXER_FEED_SPEED));
     operatorController.leftBumper().whileTrue(indexer.setSpeed(-SubsystemSpeeds.INTAKE_SPEED));
     operatorController.rightTrigger().whileTrue(commandFactory.runIntakeAndIndexer());
 
     driverController.rightBumper().whileTrue(commandFactory.shootWhenUpToSpeed(SubsystemSpeeds.SHOOTER_SPEED));
     driverController.leftBumper().whileTrue(shooter.setShooterSpeed(SubsystemSpeeds.SHOOTER_SPEED));
-  }
->>>>>>> main
 
-    operatorController.rightTrigger().whileTrue(commandFactory.runningTwoAtTheSameTime())
+
+    operatorController.rightTrigger().whileTrue(commandFactory.runningIntakeAndIndexerAtTheSameTime());
   }
   private void configureDriverBindings() {
 
