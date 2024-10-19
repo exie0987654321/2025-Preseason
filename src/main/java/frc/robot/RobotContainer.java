@@ -40,8 +40,8 @@ public class RobotContainer {
   private void configureOperatorBindings() {
     operatorController.rightBumper().whileTrue(intake.setSpeed(SubsystemSpeeds.INTAKE_SPEED));
   
-    operatorController.leftBumper().whileTrue(indexer.setSpeed(-SubsystemSpeeds.INDEXER_FEED_SPEED));
-    operatorController.leftBumper().whileTrue(indexer.setSpeed(-SubsystemSpeeds.INTAKE_SPEED));
+    operatorController.leftBumper().whileTrue(indexer.setSpeed(SubsystemSpeeds.INDEXER_FEED_SPEED));
+    operatorController.leftTrigger().whileTrue(indexer.setSpeed(-SubsystemSpeeds.INTAKE_SPEED));
     operatorController.rightTrigger().whileTrue(commandFactory.runIntakeAndIndexer());
 
     driverController.rightBumper().whileTrue(commandFactory.shootWhenUpToSpeed(SubsystemSpeeds.SHOOTER_SPEED));
