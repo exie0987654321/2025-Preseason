@@ -6,7 +6,9 @@ package frc.robot;
 
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.SubsystemSpeeds;
+import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
 public class RobotContainer {
@@ -16,6 +18,10 @@ public class RobotContainer {
       DriveConstants.OPERATOR_CONTROLLER_PORT);
 
   private final Intake intake = new Intake();
+  private final Indexer indexer = new Indexer();
+  private final Shooter shooter = new Shooter();
+
+  private final CommandFactory commandFactory = new CommandFactory(intake, indexer, shooter);
 
   private final Indexer indexer = new Indenxer();
 
@@ -32,14 +38,27 @@ public class RobotContainer {
   private void configureDefaultCommands() {
     intake.setDefaultCommand(intake.setSpeed(0));
     indexer.setDefaultCommand(indexer.setSpeed(0));
+<<<<<<< HEAD
 
 
+=======
+    shooter.setDefaultCommand(shooter.setShooterSpeed(0));
+>>>>>>> main
   }
 
   private void configureOperatorBindings() {
     operatorController.rightBumper().whileTrue(intake.setSpeed(SubsystemSpeeds.INTAKE_SPEED));
+<<<<<<< HEAD
   
     operatorController.leftBumper().whileTrue(indexer.setSpeed(-SubsystemSpeeds.INDEXER_SPEED));
+=======
+    operatorController.leftBumper().whileTrue(indexer.setSpeed(-SubsystemSpeeds.INTAKE_SPEED));
+    operatorController.rightTrigger().whileTrue(commandFactory.runIntakeAndIndexer());
+
+    driverController.rightBumper().whileTrue(commandFactory.shootWhenUpToSpeed(SubsystemSpeeds.SHOOTER_SPEED));
+    driverController.leftBumper().whileTrue(shooter.setShooterSpeed(SubsystemSpeeds.SHOOTER_SPEED));
+  }
+>>>>>>> main
 
     operatorController.rightTrigger().whileTrue(commandFactory.runningTwoAtTheSameTime())
   }
